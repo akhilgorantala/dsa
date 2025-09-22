@@ -1,7 +1,7 @@
 package linkedlist;
 
 public class LinkedList {
-    
+
     private Node head;
     private Node tail;
     private int length;
@@ -15,31 +15,31 @@ public class LinkedList {
         }
     }
 
-    public LinkedList(int value) {
+    public LinkedList(int value){
         Node newNode = new Node(value);
         head = newNode;
         tail = newNode;
         length = 1;
     }
 
-    public void printList() {
+    public void printList(){
         Node temp = head;
-        while(temp != null){
+        while (temp != null) {
             System.out.println(temp.value);
             temp = temp.next;
         }
     }
 
-    public void getHead() {
-        System.out.println("Head: " + head.value);
+    public void getHead(){
+        System.out.println("Head: " + head);
     }
 
-    public void getTail() {
-        System.out.println("Tail: " + tail.value);
+    public void getTail(){
+        System.out.println("Tail: " + tail);
     }
-
-    public void getLength() {
-        System.out.println("Length " + length);
+    
+    public void getLength(){
+        System.out.println("Length: " + length);
     }
 
     public void append(int value){
@@ -56,7 +56,7 @@ public class LinkedList {
 
     public Node removeLast(){
         if(length == 0) return null;
-        
+
         Node temp = head;
         Node pre = head;
 
@@ -94,20 +94,14 @@ public class LinkedList {
         head = head.next;
         temp.next = null;
         length--;
-
-        if(length == 0) {
+        if(length == 0){
             tail = null;
         }
-
         return temp;
     }
 
     public Node get(int index){
-        //index is less than 0
-        //index is great than or equal to length
-        if(index < 0 || index >= length){
-            return null;
-        }
+        if(index < 0 || index >= length) return null;
 
         Node temp = head;
 
@@ -128,21 +122,19 @@ public class LinkedList {
     }
 
     public boolean insert(int index, int value){
-        if (index < 0 || index > length) {
-            return false;
-        }
+        if(index < 0 || index > length) return false;
 
-        if (index == 0) {
+        if(index == 0) {
             prepend(value);
             return true;
         }
-
-        if (index == length) {
+        if(index == length){
             append(value);
             return true;
         }
 
         Node newNode = new Node(value);
+
         Node temp = get(index - 1);
 
         newNode.next = temp.next;
@@ -153,7 +145,9 @@ public class LinkedList {
 
     public Node remove(int index){
         if(index < 0 || index >= length) return null;
+
         if(index == 0) return removeFirst();
+        
         if(index == length - 1) return removeLast();
 
         Node prev = get(index - 1);
